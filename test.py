@@ -1,9 +1,11 @@
-def keep_ints(n):
-    """Returns a function which takes one parameter cond and 
-    prints out all integers 1..i..n where calling cond(i) returns True.
-    """
-    def inner(cond):
-        for i in range(n):
-            if cond(i):
-                print(i)
-    return inner
+def count_stair_ways(n, k):
+    if n == 0:
+        return 1
+    elif n < 0:
+        return 0
+    else:
+        total, i = 0, 1
+        while i <= k:
+            total += count_stair_ways(n-i, k)
+            i += 1
+    return total
