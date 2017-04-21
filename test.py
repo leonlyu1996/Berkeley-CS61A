@@ -1,11 +1,16 @@
-def count_stair_ways(n, k):
-    if n == 0:
-        return 1
-    elif n < 0:
-        return 0
-    else:
-        total, i = 0, 1
-        while i <= k:
-            total += count_stair_ways(n-i, k)
-            i += 1
-    return total
+class A:
+    def f(self):
+        return 2
+    def g(self, obj, x):
+        if x == 0:
+            return A.f(obj)
+        return obj.f() + self.g(self, x - 1)
+class B(A):
+    def f(self):
+        return 4
+
+class Yolo:
+    def __init__(self, motto):
+        self.motto = motto
+    def g(self, x):
+        return self.motto + x
