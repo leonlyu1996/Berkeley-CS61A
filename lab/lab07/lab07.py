@@ -196,3 +196,18 @@ def print_tree(t, indent=0):
     print('  ' * indent + str(t.root))
     for b in t.branches:
         print_tree(b, indent + 1)
+
+def redundant_map(t, f):
+    """
+    >>> double = lambda x: x*2
+    >>> tree = Tree(1, [Tree(1), Tree(2, [Tree(1, [Tree(1)])])])
+    >>> print_levels(redundant_map(tree, double))
+    [2] # 1 * 2 ˆ (1) ; Apply double one time
+    [4, 8] # 1 * 2 ˆ (2), 2 * 2 ˆ (2) ; Apply double two times
+    [16] # 1 * 2 ˆ (2 ˆ 2) ; Apply double four times
+    [256] # 1 * 2 ˆ (2 ˆ 3) ; Apply double eight times
+    """
+    t.root = f(t)
+    new_f = lamb a = Link(1, Link(2, Link(3)))da x: f(f(x))
+    t.branches = [redundant_map(b, new_f) for b in t.branches if b]
+    return t
